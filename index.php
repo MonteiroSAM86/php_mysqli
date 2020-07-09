@@ -15,12 +15,14 @@
         <div>
 
             <?php
-                $db_host="localhost";
+                
+                echo phpinfo();
+                /*$db_host="localhost";
                 $db_nome="condominio";
                 $db_user="root";
                 $db_password="";
 
-                $conn=mysqli_conn
+                $conn=mysqli_conn*/
 
             ?>
 
