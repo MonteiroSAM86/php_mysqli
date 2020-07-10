@@ -13,11 +13,24 @@
     </header>
     <section>
         <div>
-            <form action="pesquisa.php" method="get">
-            <label>Procurar: <input type="text" name="procurar"></label>
-            <input type="submit" name="enviar" value="Pesquisar!">
-            </form>
-            
+                       
+            <?php 
+                $myPesquisa=$_GET["procurar"]; // o erro que aparece no modo local na versão web desaparece 
+                require_once 'procurar.php';
+                $mypage=$_SERVER["PHP_SELF"];
+                if($myPesquisa!=NULL) {
+                    procurar($myPesquisa);
+                }
+                else {
+                    echo (
+                    "<form action='" . $mypage . "'method='get'>
+                    <label>Procurar: <input type='text' name='procurar'></label>
+                    <input type='submit' name='enviar' value='Pesquisar!'>
+                    </form>");
+                }
+
+            ?>
+
             <?php
                               
                 require ("db_conexion.php");

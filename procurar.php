@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>resultado da pesquisa</title>
-</head>
-<body>
-<header>
-        <h1>Curso de PHP MySQL</h1>
-    </header>
-    <section>
-        <div>
+<?php 
 
-            <?php
-                
-                $procura=$_GET["procurar"];
+function procurar($aProcura) {
+
+//$procura=$_GET["procurar"];
 
                 require ("db_conexion.php");
 
@@ -32,7 +20,7 @@
                 $consulta="SELECT f.letra, f.piso, f.permilagem, c.tratamento, c.nome, c.tlm 
                 FROM fracoes f join condominos c
                 on f.id_condomino = c.id_condomino
-                WHERE f.letra='$procura'";
+                WHERE f.letra like '%$aProcura%'";
 
                 $resultado=mysqli_query($conn, $consulta);
                 echo "<table>
@@ -73,15 +61,4 @@
                 
                 mysqli_close($conn);
 
-
-            ?>
-
-        </div>
-        
-    </section>
-    
-    <footer>
-        <p>&copy;Hugo Monteiro</p>
-    </footer>
-</body>
-</html>
+}
