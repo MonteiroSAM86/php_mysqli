@@ -3,23 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso de PHP MySQL</title>
-    <link rel="stylesheet" href="_css/estilo.css">
-
+    <title>resultado da pesquisa</title>
 </head>
 <body>
-    <header>
+<header>
         <h1>Curso de PHP MySQL</h1>
     </header>
     <section>
         <div>
-            <form action="pesquisa.php" method="get">
-            <label>Procurar: <input type="text" name="procurar"></label>
-            <input type="submit" name="enviar" value="Pesquisar!">
-            </form>
-            
+
             <?php
-                              
+                
+                $procura=$_GET["procurar"];
+
                 require ("db_conexion.php");
 
                 $conn=mysqli_connect($db_host, $db_user, $db_password);
@@ -35,7 +31,8 @@
 
                 $consulta="SELECT f.letra, f.piso, f.permilagem, c.tratamento, c.nome, c.tlm 
                 FROM fracoes f join condominos c
-                on f.id_condomino = c.id_condomino";
+                on f.id_condomino = c.id_condomino
+                WHERE f.letra='$procura'";
 
                 $resultado=mysqli_query($conn, $consulta);
                 echo "<table>
@@ -72,18 +69,7 @@
                 }
                 echo "<br><br><br>";
 
-                $consulta2="SELECT * FROM fracoes";
-
-                $resultado2=mysqli_query($conn, $consulta2);
-
-                while ($row2 = mysqli_fetch_array($resultado2, MYSQLI_ASSOC)) { //MAIS FÁCIL TRABALHAR COM ARRAY
-                    echo "<table><tr><td>";
-                    echo $row2['letra']. "</td><td>";
-                    echo $row2['piso']. "</td><td>";
-                    echo $row2['permilagem']. "</td><td></tr></table>";
-                 
-                    echo "<br>";
-                }
+                
                 
                 mysqli_close($conn);
 
@@ -97,6 +83,5 @@
     <footer>
         <p>&copy;Hugo Monteiro</p>
     </footer>
-
 </body>
 </html>

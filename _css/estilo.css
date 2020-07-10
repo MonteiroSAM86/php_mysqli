@@ -1,7 +1,7 @@
 @charset "UTF-8";
 body{
     background: rgb(70, 109, 236);
-    font: normal 15pt Arial;
+    font: normal 10pt Arial;
 
 }
 header{
@@ -35,3 +35,14 @@ input#botao {
     margin-left: 150px;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {background-color: #f2f2f2;}
